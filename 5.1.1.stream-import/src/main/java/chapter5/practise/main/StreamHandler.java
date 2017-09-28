@@ -34,7 +34,7 @@ public class StreamHandler {
         }).map(x -> {
             System.out.println("mapping: " + x.getName());
             return x.getName();
-        }).limit(3).collect(toList());
+        }).skip(2).limit(3).collect(toList());
         System.out.println(names);
 
         System.out.println("-----------------------------------------------------------------------------------");
