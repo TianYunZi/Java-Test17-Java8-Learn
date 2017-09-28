@@ -58,5 +58,7 @@
     </build>
     <modules>
         <module>2.1.1.prameter</module>
+        <module>3.1.1.function-interface</module>
+        <module>5.1.1.stream-import</module>
     </modules>
 </project>
