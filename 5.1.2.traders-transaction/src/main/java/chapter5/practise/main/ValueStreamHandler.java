@@ -4,13 +4,15 @@ import chapter5.practise.model.Dish;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
 /**
- * Created by Admin on 2017/9/28.
+ * Created by Admin on 2017/9/29.
  */
-public class StreamHandler {
+public class ValueStreamHandler {
 
     private static final List<Dish> menu = Arrays.asList(new Dish(" pork", false, 800, Dish.Type.MEAT),
             new Dish(" beef", false, 700, Dish.Type.MEAT),
@@ -23,23 +25,23 @@ public class StreamHandler {
             new Dish(" salmon", false, 450, Dish.Type.FISH));
 
     public static void main(String[] args) {
-        List<String> result = menu.parallelStream().map(Dish::getName).collect(toList());
-        result.forEach(System.out::println);
+        int sum = menu.stream().mapToInt(Dish::getCalories).sum();
+        System.out.println(sum);
 
         System.out.println("-----------------------------------------------------------------------------------");
 
-        List<String> names = menu.parallelStream().filter(x -> {
-            System.out.println("filtering: " + x.getName());
-            return x.getCalories() > 300;
-        }).map(x -> {
-            System.out.println("mapping: " + x.getName());
-            return x.getName();
-        }).skip(2).limit(3).collect(toList());
-        System.out.println(names);
+        menu.stream().mapToInt(Dish::getCalories).boxed().collect(toList()).forEach(System.out::println);
 
         System.out.println("-----------------------------------------------------------------------------------");
 
-        menu.parallelStream().map(Dish::getName).map(String::length).collect(toList()).forEach(System.out::println);
+        OptionalInt max = menu.stream().mapToInt(Dish::getCalories).max();
+        if (max.isPresent()) {
+            System.out.println(max.getAsInt());
+        }
+
+        System.out.println("-----------------------------------------------------------------------------------");
+
+        Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]}).limit(10).map(t -> t[0]).forEach(System.out::println);
 
         System.out.println("-----------------------------------------------------------------------------------");
     }

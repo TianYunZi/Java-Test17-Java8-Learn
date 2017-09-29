@@ -60,5 +60,7 @@
         <module>2.1.1.prameter</module>
         <module>3.1.1.function-interface</module>
         <module>5.1.1.stream-import</module>
+        <module>5.1.2.traders-transaction</module>
+        <module>6.1.1.stream-accumulator</module>
     </modules>
 </project>
