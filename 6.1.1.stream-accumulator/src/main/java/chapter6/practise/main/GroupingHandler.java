@@ -1,4 +1,4 @@
-package chapter6.practise.handler;
+package chapter6.practise.main;
 
 import chapter6.practise.enums.CaloricLevel;
 import chapter6.practise.model.Dish;
